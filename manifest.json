@@ -1,0 +1,17 @@
+{
+	"name": "Oj! Vilken överraskning!",
+	"version": "1.0.1",
+	"manifest_version": 2,
+	"homepage_url": "http://github.com/johnste/ojvilkenoverraskning",
+	"description": "Oj! Vilken överraskning!",
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"*://fbstatic-a.akamaihd.net/*"
+	],
+	"background": {
+		"scripts": [
+			"background.js"
+		]
+	}
+}
