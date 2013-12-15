@@ -11,3 +11,24 @@ chrome.webRequest.onBeforeRequest.addListener(
 		types: ["other"]
 	},
 	['blocking']);
+
+// Modify CSP headers to allow data scheme.
+chrome.webRequest.onHeadersReceived.addListener(function(details) {
+  for (i = 0; i < details.responseHeaders.length; i++) {
+    if (isCSPHeader(details.responseHeaders[i].name.toUpperCase())) {
+      var csp = details.responseHeaders[i].value;
+      csp = csp.replace('connect-src', "connect-src 'self' data:");
+      details.responseHeaders[i].value = csp;
+    }
+  }
+  return { // Return the new HTTP header
+    responseHeaders: details.responseHeaders
+  };
+}, {
+  urls: ["*://www.facebook.com/"],
+  types: ["main_frame"]
+}, ["blocking", "responseHeaders"]);
+
+function isCSPHeader(headerName) {
+  return (headerName == 'CONTENT-SECURITY-POLICY') || (headerName == 'X-WEBKIT-CSP');
+}
