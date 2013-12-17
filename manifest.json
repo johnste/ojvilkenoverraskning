@@ -8,7 +8,7 @@
 		"webRequest",
 		"webRequestBlocking",
 		"*://fbstatic-a.akamaihd.net/*",
-		"*://www.facebook.com/"
+		"*://www.facebook.com/*"
 	],
 	"background": {
 		"scripts": [
