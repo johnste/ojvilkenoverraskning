@@ -8,7 +8,7 @@ var sound = [
 
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
-		var i = Math.round(Math.random());
+		var i = Math.round(Math.random() * sound.length);
     	return {redirectUrl: sound[i]};
 	},
 	{
